@@ -19,10 +19,16 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const { createDiets } = require('./src/controllers/dietController')
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: true })
+.then(createDiets,
+  console.log("All Diets were loaded..."))
+  
+.then(() => {
   server.listen(3001, () => {
+    console.log('Here, All you can eat~')
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });
