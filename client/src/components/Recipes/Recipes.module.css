@@ -1,0 +1,40 @@
+.recipes_card {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; 
+    text-decoration: none;
+    background-color: white;
+    background-image: url(../../images/details.jpg);
+}
+
+.pagination {
+    color: white;
+    display: flex;
+    justify-content: space-around; 
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: black;
+}
+
+.pagination p {
+    padding: 1.5rem;
+}
+
+.pagination button {
+    margin: 2rem;
+    width: 80px;
+    color: white;
+    font-size: 2em;
+    font-weight: bolder;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0.784);
+    border: none;
+}
+
+.pagination button:hover {
+    cursor: pointer;   
+    color: black;
+    background-color: rgba(255, 255, 255, 0.797);
+    box-shadow: 5px 12px 20px 0 #cccccc, 5px 11px 27px 0 #cccccc;    
+}

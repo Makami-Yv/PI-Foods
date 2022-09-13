@@ -2,7 +2,7 @@
 const { Recipe, Diet, Op } = require('../db.js');
 require("dotenv").config();
 const { API_KEY } = process.env;
-const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`;
+const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=12`;
 const axios = require('axios');
 
 // Obtenemos las recetas desde la api
@@ -51,7 +51,7 @@ async function getAllRecipes () {
         const dbRecipe = await recipeDB()
         const recipe = [...apiRecipe, dbRecipe]
         
-        return recipe
+        return recipe.flat()
         
     } catch (error) {
         console.error(error)
@@ -72,7 +72,7 @@ async function getRecipeByName (title) {
             }
         });               
         const recipeApi = recipes.filter
-            (r => r.title.toLowerCase().includes(title.toLowerCase()))
+            (r => r.name.toLowerCase().includes(title.toLowerCase()))
 
         if(recipeApi.flat().length > 0) {
             return recipeApi

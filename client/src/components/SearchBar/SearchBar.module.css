@@ -1,0 +1,36 @@
+.search_container {
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.search_container img {
+    width: 30px;
+    height: 30px;
+}
+
+.input_search {
+    padding-left: 15px;
+    height: 30px;
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+    margin-inline: 15px;
+}
+
+.btn_search {
+    height: 30px;
+    background-color: white;
+    border-radius: 15px;
+    border: none;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.btn_search:hover {
+    background-color: black;
+    border-color: white;
+    color: white;
+    box-shadow: 0 9px 18px 0 #333333, 0 8px 24px 0 #333333;
+}

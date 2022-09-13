@@ -1,0 +1,35 @@
+.card_container {
+    margin: 20px;
+    width: 330px;
+    height: 310px;
+    background-color: rgb(38, 38, 37);
+    border-radius: 25px;
+    text-align: center;
+}
+
+.card_container:hover {
+    box-shadow: 5px 12px 20px 0 #a1a1a1, 5px 11px 27px 0 #a1a1a1;    
+}
+
+.image {
+    margin-top: 15px;
+    width: 250px;
+    height: 130px;
+    border-radius: 10px;
+}
+
+.name {
+    font-weight: bolder;
+    color: white;
+    text-transform: capitalize;
+}
+
+.diets {
+    height: fit-content;
+    margin: 10px;
+    margin-inline: 1.5rem;
+    color: white;
+    text-shadow: 2px 2px #313030;
+    text-align: justify;
+    text-transform: capitalize;
+}

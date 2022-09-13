@@ -1,0 +1,26 @@
+.error_container {
+    height: 43.5rem;
+    width: 100%rem;
+    background-size: 100% 100%;
+    background-image: url(../../images/Error.jpg);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;  
+}
+
+.error_container a {
+    margin-top: 10rem;
+    text-decoration: none;
+    padding: 1rem;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+}
+
+.error_container a:hover {
+    cursor: pointer;   
+    background-color: rgba(255, 255, 255, 0.797);
+    box-shadow: 15px 12px 20px 0 #cccccc, 5px 11px 27px 0 #cccccc;
+    padding: 1rem;
+    border-radius: 25px;
+}

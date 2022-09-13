@@ -1,0 +1,33 @@
+.sortFilter_container {
+    display: flex;
+    align-items: center;
+}
+
+.selectors {
+    margin-inline: 10px;
+}
+
+.case {
+    width: 7rem;
+    height: 30px;
+    background-color: white;
+    border-color: white;
+    border-radius: 15px;
+    color: rgb(107, 106, 106)
+}
+
+.btn {
+    height: 30px;
+    background-color: white;
+    border-radius: 15px;
+    border: none;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.btn:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 0 9px 18px 0 #333333, 0 8px 24px 0 #333333;
+}

@@ -1,0 +1,41 @@
+.nav_container {
+    height: 4rem;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav_container a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    text-decoration:  none;
+    text-align: center;
+}
+
+.logo {
+    margin-inline: 50px;
+    width: auto;
+}
+
+.logo:hover {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce{
+    20%,50%,80%, to{
+        transform: translateY(0);
+    }
+    40%{
+        transform: translateY(-15px);
+    }
+    70%{
+        transform: translateY(-10px);
+    }
+    90%{
+        transform: translateY(-5px);
+    }
+}
