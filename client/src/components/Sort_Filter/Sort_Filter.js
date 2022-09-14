@@ -56,6 +56,7 @@ export function SortFilter() {
     // reseteamos los filtros y sorts
     function handleReset() {
         dispatch(reset());
+        
     }
 
     return (
@@ -63,12 +64,12 @@ export function SortFilter() {
             <div className={styles.sortFilter_container}>
                 <h3>Filtrar por:</h3>
                 <div className={styles.selectors}>
-                    <select 
+                    <select
                         className={styles.case}
-                        defaultValue="All"
+                        defaultValue="ALL"
                         onChange={(e) => handleFilterByDiet(e)}
                     >
-                        <option value="All">
+                        <option value="ALL">
                             All Diets
                         </option>
                         {
@@ -100,10 +101,10 @@ export function SortFilter() {
                 <div className={styles.selectors}>
                     <select
                         className={styles.case}
-                        defaultValue="order"
+                        defaultValue="ANY"
                         onChange={(e) => handleOrderByName(e)}
                     >
-                        <option value="Any">
+                        <option value="ANY">
                             Name
                         </option>
                         <option value="A-Z">
@@ -116,16 +117,16 @@ export function SortFilter() {
 
                     <select
                         className={styles.case}
-                        defaultValue="order"
+                        defaultValue="NONE"
                         onChange={(e) => handleOrderByHealthScore(e)}
                     >
-                        <option value="Any">
+                        <option value="NONE">
                             Score
                         </option>
-                        <option value="Min-Max">
+                        <option value="MIN-MAX">
                             Min-Max
                         </option>
-                        <option value="Max-Min">
+                        <option value="MAX-MIN">
                             Max-Min
                         </option>
                     </select>

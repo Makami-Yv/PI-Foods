@@ -60,6 +60,7 @@ export function Recipes() {
                             <Card
                             key={index}
                             id={r.id}
+                            healthScore={r.healthScore}
                             name={r.name}
                             diets={r.diets}
                             image={r.image}

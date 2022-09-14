@@ -46,16 +46,10 @@ function rootReducer(state= initialState, action) {
         case FILTER_BY_DIETS:
             const dietFiltered =
             action.payload === "ALL"
-            ? state.recipes
-            : state.copy.filter(r => {
-                if(typeof (r.diets) === 'string')
-                    return r.diets.includes(action.payload)
-                if(Array.isArray(r.diets)) {
-                    let diet = r.diets.map(r => r.name)
-                    return diet.includes(action.payload)
-                }
-                return true
-            })  
+            ? state.copy
+            : state.copy.filter(r => r.diets.includes(action.payload))  
+            
+            console.log(dietFiltered)
             if(dietFiltered.length === 0) {
                 alert("There's no Recipes with that diet.")
                 return {

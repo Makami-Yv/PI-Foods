@@ -15,6 +15,7 @@ const recipeApi = async () => {
                 name: recp.title,
                 image: recp.image,
                 diets: recp.diets,
+                healthScore: recp.healthScore,
             }
         });                                                             // Devuelve los datos de cada receta
         

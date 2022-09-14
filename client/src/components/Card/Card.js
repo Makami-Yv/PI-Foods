@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Card.module.css";
 
-export function Card({ id, image, name, diets }) {
+export function Card({ id, image, name, diets, healthScore }) {
     return (
     <div className={style.card_container} key={id}>
         <div>
@@ -11,9 +11,10 @@ export function Card({ id, image, name, diets }) {
             alt="recipe_image"/>
         </div>
         <h3 className={style.name}>{name}</h3>
+        <h3>Score: {healthScore}</h3>
         <div>
             <h4 className={style.diets}>
-                <p>Diets: </p>
+                <p>Type of diet: </p>
                 {Array.isArray(diets) ? diets.map((e) => e).join(", ") : diets}
             </h4>
         </div>

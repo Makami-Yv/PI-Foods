@@ -1,7 +1,8 @@
 .card_container {
+    color: white;
     margin: 20px;
     width: 330px;
-    height: 310px;
+    height: 350px;
     background-color: rgb(38, 38, 37);
     border-radius: 25px;
     text-align: center;
@@ -20,7 +21,6 @@
 
 .name {
     font-weight: bolder;
-    color: white;
     text-transform: capitalize;
 }
 
@@ -28,7 +28,6 @@
     height: fit-content;
     margin: 10px;
     margin-inline: 1.5rem;
-    color: white;
     text-shadow: 2px 2px #313030;
     text-align: justify;
     text-transform: capitalize;
