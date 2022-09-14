@@ -3,6 +3,7 @@
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 60%;
     border-radius: 25px;
     color: white;
@@ -10,7 +11,7 @@
 }
 
 .stats {
-    width: 60%;
+    width: 100%;
     font-size: 20px;
 }
 
@@ -21,6 +22,23 @@
 }
 
 .stats p {
-    color: royalblue;
+    color: red;
     text-shadow: 2px 2px #313030;
+}
+
+.dietsSelect {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    height: 50px;
+    width: fit-content;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.btnDelete {
+    margin-left: 10px;
+    border-radius: 10px;
+    height: fit-content;
 }

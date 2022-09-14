@@ -49,7 +49,7 @@ export function Form() {
         errors.image = "URL required";
         }
         if (!noEmpty.test(input.summary)) {
-            errors.image = "Summary required. Add some description";
+            errors.summary = "Summary required. Add some description";
         }
         if (!validateNum.test(input.healthScore)) {
             errors.healthScore = "Score required. Add the Score";
@@ -72,32 +72,33 @@ export function Form() {
         }))
     };
 
-    function handleDeleteDiet(diet) {
+    function handleDeleteDiet(e, diet) {
+        e.preventDefault()
         setInput({
             ...input,
-            types: input.diets.filter(d => d !== diet),
+            diets: input.diets.filter(d => d !== diet),
         });
     };
 
     function handleDietsChange(e) {
-        if (input.diets.length > 0) {
+        if(!input.diets.includes(e.target.value)){
             setInput({
                 ...input,
-                types: [...input.types, e.target.value]
+                diets: [...input.diets, e.target.value]
             })
-            e.target.value = 'Select type';
+            e.target.value = 'Select Diet';
         } else {
-            alert('At least one Diet')
+            e.target.value = 'Select Diet';
         }
     }
 
     function handleSubmit(e) {
         e.preventDefault();
         try {
-            console.log("newRecipe: ",input.types,input.sprite)
             let foundName = allRecipes.filter(
                 (e) => e.name.toLowerCase() === input.name.toLowerCase()
             );
+            console.log(errors)
         
             if (!foundName) {
                 return alert("There's already a Recipe with this name, try another one");
@@ -108,7 +109,7 @@ export function Form() {
                     name: input.name,
                     image: input.image,
                     summary: input.summary,
-                    healhtScore: input.healthScore,
+                    healthScore: input.healthScore,
                     instructions: input.instructions,
                     diets: input.diets,
                 };
@@ -154,9 +155,9 @@ export function Form() {
                             <input type="text" value={input.summary} name='summary' onChange={e => {handleInputChange(e)}} placeholder="Recipe summary" />
                             <p>{errors.summary}</p>
 
-                            <label>HealthScore:</label>
+                            <label>Score:</label>
                             <input type="number" value={input.healthScore} name='healthScore' onChange={e => {handleInputChange(e)}} placeholder="Recipe score" />
-                            <p>{errors.healhtScore}</p>
+                            <p>{errors.healthScore}</p>
 
                             <label>Instructions:</label>
                             <input type="text" value={input.instructions} name='instructions' onChange={e => {handleInputChange(e)}} placeholder="Recipe instructions" />
@@ -174,18 +175,20 @@ export function Form() {
                                 })
                             }
                         </select>
-                                {
-                                    input.diets.map(e => {
+                                {                                    
+                                    input.diets?.map(diet => {
                                         return (
-                                            <div className={styles.dietsSelect} key={e}>
-                                                <p className={styles.pDiets}>{e}</p>
-                                                <button className={styles.btnDelete} onClick={() => {handleDeleteDiet(e)}}>x</button>
+                                            <div className={styles.dietsSelect}>
+                                                <p className={styles.pDiets}>{diet}</p>
+                                                <button className={styles.btnDelete} onClick={(e) => {handleDeleteDiet(e, diet)}}>x</button>
                                             </div>
                                         )
                                     }) 
                                 }
                     </div>
+                    <br/>
                     <button className={styles.btnCreate} type='submit'>Create!</button>
+                    <br/>
                 </form>
             </div>
         </div>

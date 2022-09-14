@@ -2,7 +2,7 @@
 const { Recipe, Diet, Op } = require('../db.js');
 require("dotenv").config();
 const { API_KEY } = process.env;
-const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=12`;
+const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`;
 const axios = require('axios');
 
 // Obtenemos las recetas desde la api
@@ -36,8 +36,19 @@ const recipeDB = async () => {
                 attributes: ['name'],
             }
         })
+        let recipe = response?.map(recp => {
+            return {
+                id: recp.id,
+                name: recp.name,
+                image: recp.image,
+                diets: recp.diets?.map(d => d.name),
+                healthScore: recp.healthScore,
+                summary: recp.summary,
+                instructions: recp.instructions,
+            }
+        });                                   
 
-        return response
+        return recipe
         
     } catch (error) {
         console.error(error)
@@ -102,23 +113,38 @@ async function getRecipeByName (title) {
 // Buscamos recetas por ID
 async function getRecipeByID (id) {
     try {
-        const dbres = await recipeDB();
-        const dbRecipe = dbres.filter(res => res.id == id)
-        
-        if(dbRecipe.length > 0) {
-            return dbRecipe
+        const dbResponse = await Recipe.findAll({
+            include: {
+                model: Diet,
+                attributes: ['name'],
+            }
+        })
+        if(dbResponse.length) {
+            let recipe = dbResponse?.map(recp => {
+                return {
+                    id: id,
+                    name: recp.dataValues.name,
+                    image: recp.dataValues.image,
+                    diets: recp.dataValues.diets?.map(d => d.name),
+                    healthScore: recp.dataValues.healthScore,
+                    summary: recp.dataValues.summary,
+                    instructions: recp.dataValues.instructions,
+                }
+            });                                   
+            console.log(recipe)
+            return recipe
         } else {
             const apires = await axios.get(
                 `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
-                const detail = apires.data
-                return {
-                    id: id,
-                    image: detail.image,
-                    name: detail.title,
-                    diets: detail.diets,
-                    summary: detail.summary,
-                    healthScore: detail.healthScore,
-                    instructions: detail.instructions,
+            const detail = apires.data
+            return {
+                id: id,
+                image: detail.image,
+                name: detail.title,
+                diets: detail.diets,
+                summary: detail.summary,
+                healthScore: detail.healthScore,
+                instructions: detail.instructions,
             }
         }
 

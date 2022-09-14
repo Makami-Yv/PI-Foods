@@ -15,7 +15,7 @@ import styles from "./Details.module.css";
 
 export function Details() {
     const dispatch = useDispatch();
-    const params = useParams();             // desde aqui obtenemos el id del perro
+    const params = useParams();             // desde aqui obtenemos el id de la receta
     const recipe = useSelector((state) => state.details);
 
     useEffect(() => {
@@ -24,6 +24,7 @@ export function Details() {
     }, [dispatch, params.id]);
 
     console.log(recipe)
+    console.log(recipe.name)
 
     if (!recipe.name) {
         return (

@@ -5,7 +5,7 @@ import {
     CREATE_RECIPE, FILTER_BY_DIETS,
     FILTER_BY_SOURCE, ORDER_BY_NAME, 
     ORDER_BY_HEALTHSCORE, 
-    RESET, CLEAN_DETAILS,
+    RESET, CLEAN_DETAILS, CHANGE_PAGE
 } from './actions'
 
 const initialState= {
@@ -13,6 +13,7 @@ const initialState= {
     copy: [],
     diets: [],
     details: {},
+    page: 1,
 }
 
 function rootReducer(state= initialState, action) {
@@ -46,7 +47,7 @@ function rootReducer(state= initialState, action) {
         case FILTER_BY_DIETS:
             const dietFiltered =
             action.payload === "ALL"
-            ? state.copy
+            ? state.recipes
             : state.copy.filter(r => r.diets.includes(action.payload))  
             
             console.log(dietFiltered)
@@ -127,6 +128,11 @@ function rootReducer(state= initialState, action) {
                 ...state,
                 details: {}
             };
+        case CHANGE_PAGE:
+            return {
+                ...state,
+                page: action.payload
+            }
         default:
             return state;
     }

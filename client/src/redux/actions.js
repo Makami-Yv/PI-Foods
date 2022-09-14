@@ -8,7 +8,7 @@ export  const
     CREATE_RECIPE = "CREATE_RECIPE", FILTER_BY_DIETS = "FILTER_BY_DIETS",
     FILTER_BY_SOURCE = "FILTER_BY_SOURCE", ORDER_BY_NAME = "ORDER_BY_NAME",
     ORDER_BY_HEALTHSCORE = "ORDER_BY_HEALTHSCORE", RESET = "RESET",
-    CLEAN_DETAILS = "CLEAN_DETAILS"
+    CLEAN_DETAILS = "CLEAN_DETAILS", CHANGE_PAGE = "CHANGE_PAGE"
 
 // Rutas del Back
 const
@@ -171,5 +171,18 @@ export function cleanDetails() {
     } catch (e) {
         console.error(e)
         return alert("An error has occured. Can't clean the details")
+    }
+}
+
+// Pagina actual
+export function changePage(page) {
+    try {
+        return {
+            type: CHANGE_PAGE,
+            payload: page
+        }
+    } catch (e) {
+        console.error(e)
+        return alert("An error has occured. Can't change the page")
     }
 }

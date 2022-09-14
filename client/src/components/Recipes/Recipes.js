@@ -18,24 +18,25 @@ export function Recipes() {
     let dispatch = useDispatch();
     let allRecipes = useSelector(state => state.copy);
     let errorRender = useSelector(state => state.copy);
+    let page = useSelector(state => state.page)
 
-    let [counterRecipes, setCounterRecipe] = useState(1);     // Pagina en la que estamos
-    const [recipePerPage] = useState(9);                  // Cuantos perros tendremos por pagina
+    let [currentPage, setCurrentPage] = useState(page);     // Pagina en la que estamos
+    const [recipePerPage] = useState(9);                  // Cuantas recipes tendremos por pagina
 
-    let lastRecipe = counterRecipes * recipePerPage;             // el indice mayor por pagina
+    let lastRecipe = currentPage * recipePerPage;             // el indice mayor por pagina
     if(allRecipes.length < 9) lastRecipe =  allRecipes.length;
 
     let firstRecipe = lastRecipe - recipePerPage;                // el indice menor por pagina
     if(firstRecipe < 1) firstRecipe = 0;
     
-    const indexPages = Math.ceil(allRecipes.length / recipePerPage);   // Numero de paginas en total
-
     const recipeData = useSelector((state) =>
-        state.copy.length > 1 
-            ? state.copy.slice(firstRecipe, lastRecipe) 
-            : [state.copy]                                     // los perros de la pagina actual
+    state.copy.length > 1 
+    ? state.copy.slice(firstRecipe, lastRecipe) 
+    : [state.copy]                                     // las recetas de la pagina actual
     );
-
+    
+    const indexPages = Math.ceil(allRecipes.length / recipePerPage);   // Numero de paginas en total
+    
     useEffect(() => {
         dispatch(getAllRecipes());
         dispatch(getAllDiets());
@@ -70,19 +71,23 @@ export function Recipes() {
                 )}
             </div>
             <div className={styles.pagination}>
-                <button onClick={() => setCounterRecipe(counterRecipes = 1)}>
+                <button onClick={() => setCurrentPage(currentPage = 1)}>
                     {"<<"}
                 </button>
-                <button onClick={() => setCounterRecipe(--counterRecipes)}>
+                <button onClick={() => currentPage === 1?
+                    null
+                    : setCurrentPage(--currentPage)}>
                     {"<"}
                 </button>
                 <p>
-                    {counterRecipes} of {indexPages}
+                    {currentPage} of {indexPages}
                 </p>
-                <button onClick={() => setCounterRecipe(++counterRecipes)}>
+                <button onClick={() => currentPage === indexPages?
+                    null 
+                    : setCurrentPage(++currentPage)}>
                     {">"}
                 </button>
-                <button onClick={() => setCounterRecipe(indexPages)}>
+                <button onClick={() => setCurrentPage(indexPages)}>
                     {">>"}
                 </button>
             </div>

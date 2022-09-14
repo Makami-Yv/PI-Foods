@@ -7,29 +7,32 @@ import {
     orderByName,
     orderByHealthScore,
     reset,
+    changePage,
 } from "../../redux/actions";
 
 import styles from "./Sort_Filter.module.css";
 
 export function SortFilter() {
-    const [, setScore] = useState("Any");
-    const [, setName] = useState("Any")
-    const [, setDiet] = useState("All");
-    const [, setSource] = useState("AllSource")
-
+    
     const dispatch = useDispatch();
     const allDiets = useSelector(state => state.diets);
+    
+    const [, setScore] = useState("NONE");
+    const [, setName] = useState("ANY")
+    const [, setDiet] = useState("ALL");
+    const [, setSource] = useState("AllSource")
 
     useEffect(() => {
         dispatch(reset());
     }, [dispatch]);
 
-    // filtramos por tipos
+    // filtramos por dietas
     function handleFilterByDiet(e) {
         e.preventDefault();
         handleReset();
         dispatch(filterByDiets(e.target.value));
         setDiet(e.target.value)
+        dispatch(changePage(1))
     }
 
     // filtramos por origen
@@ -37,6 +40,7 @@ export function SortFilter() {
         e.preventDefault();
         dispatch(filterBySource(e.target.value));
         setSource(e.target.value)
+        dispatch(changePage(1))
     }
 
     // ordenamos por nombres
@@ -44,19 +48,24 @@ export function SortFilter() {
         e.preventDefault();
         dispatch(orderByName(e.target.value));
         setName(e.target.value)
+        dispatch(changePage(1))
     }
 
-    // ordenamos por ataque
+    // ordenamos por score
     function handleOrderByHealthScore(e) {
         e.preventDefault();
         dispatch(orderByHealthScore(e.target.value));
         setScore(e.target.value)
+        dispatch(changePage(1))
     }
 
     // reseteamos los filtros y sorts
     function handleReset() {
         dispatch(reset());
-        
+        setDiet("ALL")
+        setName("ANY")
+        setScore("NONE")
+        setSource("AllSource")
     }
 
     return (

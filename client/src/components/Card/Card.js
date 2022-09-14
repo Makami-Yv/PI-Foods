@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./Card.module.css";
+import Food_placeholder from "../../images/food.png"
 
 export function Card({ id, image, name, diets, healthScore }) {
     return (
@@ -7,7 +8,7 @@ export function Card({ id, image, name, diets, healthScore }) {
         <div>
             <img className={style.image} 
             src={image
-                || "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/MissingNo.png/320px-MissingNo.png"} 
+                || Food_placeholder} 
             alt="recipe_image"/>
         </div>
         <h3 className={style.name}>{name}</h3>
